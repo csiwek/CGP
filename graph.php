@@ -5,7 +5,12 @@ require_once 'inc/functions.inc.php';
 require_once 'inc/collectd.inc.php';
 
 $plugin = validate_get(GET('p'), 'plugin');
-$type = validate_get(GET('t'), 'type');
+
+if($plugin == 'dbi'){
+	$type = validate_get(GET('pi'), 'type');
+} else {
+	$type = validate_get(GET('t'), 'type');
+}
 $width = GET('x') ? filter_var(GET('x'), FILTER_VALIDATE_INT, array(
 	'min_range' => 10,
 	'max_range' => $CONFIG['max-width']
@@ -38,7 +43,6 @@ if ($plugin == 'aggregation') {
 if (function_exists('json_decode') && file_exists('plugin/'.$plugin.'.json')) {
 	$json = file_get_contents('plugin/'.$plugin.'.json');
 	$plugin_json = json_decode($json, true);
-
 	if (is_null($plugin_json))
 		error_log('CGP Error: invalid json in plugin/'.$plugin.'.json');
 }

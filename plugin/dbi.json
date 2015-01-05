@@ -1,0 +1,42 @@
+{
+    "sensors": {
+		"title": "Boiler on {{HOST}}",
+		"vertical": "temp",
+		"type": "io",
+		"rrdtool_opts": ["-l", "15", "-r", "-u", "60"],
+		"legend": {
+			"flow-in": {
+				"flow-in": "From Boiler",
+				"color": "ff0000"
+			},
+			"flow-out": {
+				"name": "Return",
+				"color": "00aa00"
+			}
+		},
+		"legend_format": "%2.1lf%sC",
+		"base": "1000"
+	},
+    "sensors2": {
+		"title": "Room temperature{{HOST}}",
+		"vertical": "temp",
+		"type": "guage",
+		"rrdtool_opts": ["-l", "18", "-r", "-u", "25"],
+		"legend": {
+			"f-bedroom": {
+				"name": "Front Bedroom",
+				"color": "ff0000"
+			},
+			"r-bedroom": {
+				"name": "Rear Bedroom",
+				"color": "00aa00"
+			},
+			"living": {
+				"name": "Living Room",
+				"color": "0000ff"
+			}
+		},
+		"legend_format": "%2.1lf%sC",
+		"base": "1000"
+	}
+}
